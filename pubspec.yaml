@@ -1,5 +1,9 @@
 name: console_log_handler
 
+version: 0.1.0
+author: Mike Mitterer  <office@mikemitterer.at>
+description: Console logger
+
 dependencies:
   browser: any
 

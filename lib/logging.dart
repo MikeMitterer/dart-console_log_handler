@@ -1,4 +1,4 @@
-library webapp_base_dart.logging;
+library console_log_handler;
 
 import 'dart:html';
 import "dart:convert";
@@ -36,16 +36,13 @@ class LogConsoleHandler implements BaseLoggingHandler {
     final String messageFormat;
     final String timestampFormat;
 
-    MakeConsoleGroup makeGroup;
+    final MakeConsoleGroup groupMaker;
 
     LogConsoleHandler( { this.messageFormat: ConsolStringTransformer.DEFAULT_MESSAGE_FORMAT,
                         this.timestampFormat: ConsolStringTransformer.DEFAULT_DATE_TIME_FORMAT,
-                        this.makeGroup } ) {
+                        this.groupMaker: _defaultGroupMaker } ) {
 
         transformer = new ConsolStringTransformer(messageFormat: messageFormat, timestampFormat: timestampFormat);
-        if(makeGroup == null) {
-            makeGroup = _defaultGroupMaker;
-        }
     }
 
     /**
@@ -65,33 +62,10 @@ class LogConsoleHandler implements BaseLoggingHandler {
             window.console.error(transformer.transform(logRecord));
         }
 
-        makeGroup(logRecord);
+        groupMaker(logRecord);
     }
 
-    // -- private -------------------------------------------------------------
-
-    /// Called after cosole output is done (via makeGroup - can be overwritten)
-    void _defaultGroupMaker(final LogRecord logRecord) {
-
-        _makeStackTraceGroup("  ○ StackTrace",logRecord);
-        _makeObjectGroup("  ○ Dart-Object",logRecord);
-    }
-
-//    bool _makeJsonGroup(final String groupName, final LogRecord logRecord) {
-//        bool successfull = false;
-//
-//        if (logRecord.error != null) {
-//            if (logRecord.error is JsonTO) {
-//                window.console.groupCollapsed(groupName);
-//                window.console.log((logRecord.error as JsonTO).toPrettyString());
-//                window.console.groupEnd();
-//                successfull = true;
-//            }
-//        }
-//        return successfull;
-//    }
-
-    void _makeObjectGroup(final String groupName, final LogRecord logRecord) {
+    static void makeObjectGroup(final String groupName, final LogRecord logRecord) {
 
         void makeGroupWithString(final String groupName,final String objectAsString) {
             window.console.groupCollapsed(groupName);
@@ -105,27 +79,25 @@ class LogConsoleHandler implements BaseLoggingHandler {
             final String groupNameWithType = "$groupName (${error.runtimeType})";
             if (error is Map || error is List) {
                 try {
-                    makeGroupWithString(groupNameWithType,_prettyPrintJson(error));
+                    makeGroupWithString(groupNameWithType,prettyPrintJson(error));
 
                 } on FormatException catch(e) {
                     makeGroupWithString(groupNameWithType,error.toString());
                 }
-            } else if(error is String && (error as String).contains("{")) {
+            } else {
                 try {
-                    final decoded = JSON.decode(error);
-                    makeGroupWithString(groupNameWithType,_prettyPrintJson(decoded));
+                    final decoded = JSON.decode(error.toString());
+                    makeGroupWithString(groupNameWithType,prettyPrintJson(decoded));
 
                 } on Exception catch(e) {
                     makeGroupWithString(groupNameWithType,error.toString());
                 }
 
-            } else {
-                makeGroupWithString(groupNameWithType,error.toString());
             }
         }
     }
 
-    void _makeStackTraceGroup(final String groupName, final LogRecord logRecord) {
+    static void makeStackTraceGroup(final String groupName, final LogRecord logRecord) {
         if (logRecord.stackTrace != null) {
             window.console.group(groupName);
             window.console.log(logRecord.stackTrace.toString());
@@ -133,8 +105,17 @@ class LogConsoleHandler implements BaseLoggingHandler {
         }
     }
 
-    String _prettyPrintJson(final json) {
+    static String prettyPrintJson(final json) {
         return PRETTYJSON.convert(json);
+    }
+
+    // -- private -------------------------------------------------------------
+
+    /// Called after cosole output is done (via makeGroup - can be overwritten)
+    static void _defaultGroupMaker(final LogRecord logRecord) {
+
+        makeStackTraceGroup("  ○ StackTrace",logRecord);
+        makeObjectGroup("  ○ Dart-Object",logRecord);
     }
 }
 
