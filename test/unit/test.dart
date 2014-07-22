@@ -5,7 +5,6 @@ library unit.test;
 import 'dart:convert';
 
 import 'package:logging/logging.dart';
-import 'package:logging_handlers/logging_handlers_shared.dart';
 
 import 'package:unittest/unittest.dart';
 import 'package:unittest/html_enhanced_config.dart';

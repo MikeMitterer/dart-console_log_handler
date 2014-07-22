@@ -3,6 +3,35 @@ Shows your log-messages on the Console
 This is how it looks like:
 ![Screenshot][1]
 
+
+```dart
+library unit.test;
+
+import 'package:logging/logging.dart';
+import "package:console_log_handler/console_log_handler.dart";
+
+void main() {
+    configLogging();
+    final Logger _logger = new Logger("test");
+
+    try {
+        throw "Sample for exception";
+    } on String catch( error, stacktrace) {
+
+        _logger.severe("Caught error",error,stacktrace);
+    }
+
+}
+
+void configLogging() {
+    // now control the logging.
+    // Turn off all logging first
+    Logger.root.level = Level.INFO;
+    Logger.root.onRecord.listen(new LogConsoleHandler());
+}
+```
+
+###If you have problems###
 * [Issues][2]
 
 ###History ###

@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/console_log_handler" />
       <excludeFolder url="file://$MODULE_DIR$/test/packages" />
       <excludeFolder url="file://$MODULE_DIR$/test/unit/constraints/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/test/unit/logging/packages" />
       <excludeFolder url="file://$MODULE_DIR$/test/unit/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/packages" />
     </content>
