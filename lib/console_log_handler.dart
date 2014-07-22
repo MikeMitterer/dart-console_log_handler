@@ -11,7 +11,7 @@ import 'package:logging_handlers/logging_handlers_shared.dart';
 typedef void MakeConsoleGroup(final LogRecord logRecord);
 
 /**
- * Gibt die Logmessages farbig auf der Console aus
+ * Shows log-messages on the Console
  *
  * Format:
  *      %p = Outputs LogRecord.level
@@ -24,7 +24,11 @@ typedef void MakeConsoleGroup(final LogRecord logRecord);
  *      %e = Outputs the exception message
  *
  * Sample für einen LogConsoleHandler mit vollem Logger-Name:
- *      Logger.root.onRecord.listen(new LogConsoleHandler(messageFormat: "%n: (%t) %m"));
+ *
+ *      void configLogging() {
+ *          Logger.root.level = Level.INFO;
+ *          Logger.root.onRecord.listen(new LogConsoleHandler());
+ *      }
  */
 class LogConsoleHandler implements BaseLoggingHandler {
 

@@ -4,6 +4,8 @@ version: 0.1.0
 author: Mike Mitterer  <office@mikemitterer.at>
 description: Console logger
 
+homepage: https://github.com/MikeMitterer/dart-console_log_handler
+
 dependencies:
   browser: any
 

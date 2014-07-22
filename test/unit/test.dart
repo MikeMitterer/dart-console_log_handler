@@ -14,7 +14,7 @@ import 'package:unittest/html_enhanced_config.dart';
 // Extra packages (piepag) (http_utils, validate, signer)
 //---------------------------------------------------------
 
-import "package:console_log_handler/logging.dart";
+import "package:console_log_handler/console_log_handler.dart";
 
 //---------------------------------------------------------
 // WebApp-Basis (piwab) - webapp_base_dart
