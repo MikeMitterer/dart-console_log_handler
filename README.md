@@ -3,7 +3,7 @@ Shows your log-messages on the Console
 This is how it looks like:
 ![Screenshot][1]
 
-
+###Use it###
 ```dart
 library unit.test;
 
@@ -35,7 +35,7 @@ void configLogging() {
 * [Issues][2]
 
 ###History ###
-* 0.1.2 - Initial release
+* 0.1.3 - Initial release
 
 ###License###
 
