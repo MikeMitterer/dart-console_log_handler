@@ -57,7 +57,7 @@ void configLogging() {
     
 ###Thanks###
     
-    I used Chris Buckett's (chrisbuckett@gmail.com) [logging_handler][4]-library for my work.
+    I used Chris Buckett's (chrisbuckett@gmail.com) [logging_handler][4] library for my work.
     Thank's Chris!
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me.
