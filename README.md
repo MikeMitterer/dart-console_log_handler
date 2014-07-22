@@ -4,7 +4,7 @@ console_log_handler
 
 ![Screenshot][1]
 
-###Use it###
+###How to use it###
 ```dart
 library unit.test;
 
@@ -36,7 +36,7 @@ void configLogging() {
 * [Issues][2]
 
 ###History ###
-* 0.1.3 - Initial release
+* 0.1.4 - Initial release
 
 ###License###
 
