@@ -1,7 +1,7 @@
 Shows your log-messages on the Console
 
 This is how it looks like:
-![alt tag](https://raw.github.com/username/projectname/branch/path/to/img.png)
+![Screenshot][1]
 
 * [Issues][2]
 
@@ -32,7 +32,7 @@ This is how it looks like:
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me.
 
-[1]: https://github.com/MikeMitterer/dart-http_utils/blob/master/test/src/uribuilder_test.dart
+[1]: https://raw.githubusercontent.com/MikeMitterer/dart-console_log_handler/master/_resources/screenshot.png
 [2]: https://github.com/MikeMitterer/dart-console_log_handler/issues
 [3]: https://github.com/MikeMitterer/dart-console_log_handler
 [4]: https://github.com/chrisbu/logging_handlers  
