@@ -6,7 +6,7 @@ This is how it looks like:
 * [Issues][2]
 
 ###History ###
-* 0.1.1 - Initial release
+* 0.1.2 - Initial release
 
 ###License###
 
@@ -32,7 +32,7 @@ This is how it looks like:
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me.
 
-[1]: https://raw.githubusercontent.com/MikeMitterer/dart-console_log_handler/master/_resources/screenshot.png
+[1]: https://raw.githubusercontent.com/MikeMitterer/dart-console_log_handler/master/doc/_resources/screenshot.png
 [2]: https://github.com/MikeMitterer/dart-console_log_handler/issues
 [3]: https://github.com/MikeMitterer/dart-console_log_handler
 [4]: https://github.com/chrisbu/logging_handlers  
