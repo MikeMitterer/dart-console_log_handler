@@ -1,0 +1,10 @@
+name: console_log_handler
+
+dependencies:
+  browser: any
+
+  logging: any
+  logging_handlers: any
+
+dev_dependencies:
+  unittest: any
