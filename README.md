@@ -1,6 +1,7 @@
-Shows your log-messages on the Console
+console_log_handler
+===================
+####Shows your log-messages on the Console####
 
-This is how it looks like:
 ![Screenshot][1]
 
 ###Use it###
