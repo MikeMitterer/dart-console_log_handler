@@ -85,7 +85,7 @@ class LogConsoleHandler implements BaseLoggingHandler {
                 try {
                     makeGroupWithString(groupNameWithType,prettyPrintJson(error));
 
-                } on FormatException catch(e) {
+                } on FormatException {
                     makeGroupWithString(groupNameWithType,error.toString());
                 }
             } else {
@@ -93,7 +93,7 @@ class LogConsoleHandler implements BaseLoggingHandler {
                     final decoded = JSON.decode(error.toString());
                     makeGroupWithString(groupNameWithType,prettyPrintJson(decoded));
 
-                } on Exception catch(e) {
+                } on Exception {
                     makeGroupWithString(groupNameWithType,error.toString());
                 }
 
@@ -214,8 +214,7 @@ class ConsolStringTransformer implements LogRecordTransformer {
                         try {
                             formatString = formatString.replaceAll(regexp, dateFormat.format(logRecord.time));
                         }
-                        on UnimplementedError
-                        catch (e) {
+                        on UnimplementedError {
                             // at time of writing, dateFormat.format seems to be unimplemented.
                             // so just return the time.toString()
                             formatString = formatString.replaceAll(regexp, logRecord.time.toString());
