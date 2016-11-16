@@ -1,6 +1,11 @@
 # Change Log for console_log_handler
 Console logger
 
+## [v0.2.3](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.2.2...v0.2.3) - 2016-11-16
+
+### Docs
+* Readme-Headline [c4c5220](https://github.com/mikemitterer/dart-console_log_handler/commit/c4c5220ebaee68b8b0eebbbc28579c4b997f3934)
+
 ## [v0.2.2](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.2.1...v0.2.2) - 2016-11-16
 
 ### Docs
