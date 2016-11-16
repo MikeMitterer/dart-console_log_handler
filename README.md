@@ -1,10 +1,10 @@
 console_log_handler
 ===================
-####Shows your log-messages on the Console####
+#### Shows your log-messages on the Console
 
 ![Screenshot][1]
 
-###How to use it###
+### How to use it
 ```dart
 library unit.test;
 
@@ -32,15 +32,12 @@ void configLogging() {
 }
 ```
 
-###If you have problems###
+### If you have problems
 * [Issues][2]
 
-###History ###
-* 0.1.4 - Initial release
+### License
 
-###License###
-
-    Copyright 2014 Michael Mitterer (office@mikemitterer.at), 
+    Copyright 2016 Michael Mitterer (office@mikemitterer.at), 
     IT-Consulting and Development Limited, Austrian Branch
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,7 +52,7 @@ void configLogging() {
     either express or implied. See the License for the specific language 
     governing permissions and limitations under the License.
     
-###Thanks###
+### Thanks
     
 I used Chris Buckett's (chrisbuckett@gmail.com) [logging_handler][4] library for my work.
 Thank's Chris!
