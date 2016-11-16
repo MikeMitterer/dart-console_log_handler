@@ -72,7 +72,7 @@ main() {
 
             expect(map["family"]["age"],18);
 
-            final Map<String,dynamic> mapDecoded = JSON.decode(jsonString);
+            final Map<String,dynamic> mapDecoded = JSON.decode(jsonString) as Map<String,dynamic>;
             expect(mapDecoded,new isInstanceOf<Map<String,dynamic>>());
 
             expect(mapDecoded.length,map.length);
