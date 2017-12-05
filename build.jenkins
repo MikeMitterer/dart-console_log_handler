@@ -1,0 +1,26 @@
+pipeline {
+    agent {
+        label 'kde_neon'
+    }
+    stages {
+        stage('Prepare') {
+            steps {
+                timeout(time: 15, unit: 'MINUTES') {
+                    ansiColor('xterm') {
+                        sh 'pub update'
+                        sh 'pub global activate grinder'
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                ansiColor('xterm') {
+                    //echo "PATH is: $PATH"
+                    sh 'grind test'
+                }
+            }
+        }
+    }
+}
+                       
