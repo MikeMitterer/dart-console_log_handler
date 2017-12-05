@@ -17,7 +17,6 @@
  * limitations under the License.
  */
 
-@TestOn("chrome")
 import 'package:test/test.dart';
 
 import 'dart:convert';

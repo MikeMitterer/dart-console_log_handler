@@ -17,7 +17,6 @@
  * limitations under the License.
  */
 
-@TestOn("chrome")
 import 'package:test/test.dart';
 
 import "package:console_log_handler/console_log_handler.dart";
