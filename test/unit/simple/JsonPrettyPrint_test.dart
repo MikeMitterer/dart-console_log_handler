@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+@TestOn("content-shell")
 import 'package:test/test.dart';
 
 import 'dart:convert';

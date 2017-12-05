@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+@TestOn("content-shell")
 import 'package:test/test.dart';
 
 import "package:console_log_handler/console_log_handler.dart";
