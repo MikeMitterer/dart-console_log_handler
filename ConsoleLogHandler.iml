@@ -5,6 +5,12 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/visual_test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example/visual_test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/sample/visual_test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/sample/visual_test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/test/unit/visual/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/test/unit/visual/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />

@@ -5,69 +5,67 @@ import "dart:convert";
 import "package:intl/intl.dart";
 
 import 'package:logging/logging.dart';
-import 'package:logging_handlers/logging_handlers_shared.dart';
 
-/// Is called after the cosole output is done
+/// Is called after the console output is done
 typedef void MakeConsoleGroup(final LogRecord logRecord);
 
-/**
- * Shows log-messages on the Console
- *
- * Format:
- *      %p = Outputs LogRecord.level
- *      %m = Outputs LogRecord.message
- *      %n = Outputs the Logger.name
- *      %r | %<width>r = Short Logger.name - padded with space if width is given
- *      %t = Outputs the timestamp according to the Date Time Format specified
- *      %s = Outputs the logger sequence
- *      %x = Outputs the exception
- *      %e = Outputs the exception message
- *
- * Sample für einen LogConsoleHandler mit vollem Logger-Name:
- *
- *      void configLogging() {
- *          Logger.root.level = Level.INFO;
- *          Logger.root.onRecord.listen(new LogConsoleHandler());
- *      }
- */
-class LogConsoleHandler implements BaseLoggingHandler {
+/// Converts [LogRecord] to String
+typedef String TransformLogRecord(final LogRecord logRecord);
+
+final LogConsoleHandler _DEFAULT_HANDLER = new LogConsoleHandler();
+
+/// Shows your log-messages in the browser console
+///
+/// Usage:
+///       void configLogging() {
+///           Logger.root.level = Level.INFO;
+///           Logger.root.onRecord.listen(logToConsole);
+///       }
+void logToConsole(final LogRecord logRecord,{ TransformLogRecord transformer })
+    => _DEFAULT_HANDLER.toConsole(logRecord,transformer: transformer);
+
+/// Shows log-messages on the Console
+/// 
+/// Usage:
+///       void configLogging() {
+///           Logger.root.level = Level.INFO;
+///           Logger.root.onRecord.listen(new LogConsoleHandler());
+///       }
+///
+class LogConsoleHandler {
 
     /// prettyPrint for JSON
     static const JsonEncoder PRETTYJSON = const JsonEncoder.withIndent('   ');
 
-    LogRecordTransformer transformer;
+    final TransformLogRecord _transformer;
 
-    final String messageFormat;
-    final String timestampFormat;
+    final MakeConsoleGroup _groupMaker;
 
-    final MakeConsoleGroup groupMaker;
+    LogConsoleHandler( { final TransformLogRecord transformer: defaultTransformer,
+        final MakeConsoleGroup groupMaker: _defaultGroupMaker } )
+        : _transformer = transformer, _groupMaker = groupMaker;
 
-    LogConsoleHandler( { this.messageFormat: ConsolStringTransformer.DEFAULT_MESSAGE_FORMAT,
-                        this.timestampFormat: ConsolStringTransformer.DEFAULT_DATE_TIME_FORMAT,
-                        this.groupMaker: _defaultGroupMaker } ) {
-
-        transformer = new ConsolStringTransformer(messageFormat: messageFormat, timestampFormat: timestampFormat);
-    }
-
-    /**
-     * More infos about console output:
-     *      https://developer.chrome.com/devtools/docs/console
-     */
-    void call(final LogRecord logRecord) {
+    /// More infos about console output:
+    ///      https://developer.chrome.com/devtools/docs/console
+    void toConsole(final LogRecord logRecord,{ TransformLogRecord transformer }) {
+        transformer ??= _transformer;
+        
         if (logRecord.level <= Level.FINE) {
-            window.console.debug(transformer.transform(logRecord));
+            window.console.debug(transformer(logRecord));
 
         }
         else if (logRecord.level <= Level.INFO) {
-            window.console.info(transformer.transform(logRecord));
+            window.console.info(transformer(logRecord));
 
         }
         else {
-            window.console.error(transformer.transform(logRecord));
+            window.console.error(transformer(logRecord));
         }
 
-        groupMaker(logRecord);
+        _groupMaker(logRecord);
     }
+
+    void call(final LogRecord logRecord) => toConsole(logRecord);
 
     static void makeObjectGroup(final String groupName, final LogRecord logRecord) {
 
@@ -115,7 +113,7 @@ class LogConsoleHandler implements BaseLoggingHandler {
 
     // -- private -------------------------------------------------------------
 
-    /// Called after cosole output is done (via makeGroup - can be overwritten)
+    /// Called after console output is done (via makeGroup - can be overwritten)
     static void _defaultGroupMaker(final LogRecord logRecord) {
 
         makeStackTraceGroup("  ○ StackTrace",logRecord);
@@ -123,115 +121,23 @@ class LogConsoleHandler implements BaseLoggingHandler {
     }
 }
 
-/// Format a log record according to a string pattern
-class ConsolStringTransformer implements LogRecordTransformer {
+String defaultTransformer(final LogRecord logRecord,{ final int nameWidth = 20 }) {
+    String shortLoggerName = logRecord.loggerName.replaceAll(new RegExp('^.+\\.'), "");
+    final dateFormat = new DateFormat("HH:mm:ss.SSS");
 
-    /// Outputs [LogRecord.level]
-    static const LEVEL = "%p";
-
-    /// Outputs [LogRecord.message]
-    static const MESSAGE = "%m";
-
-    /// Outputs the [Logger.name]
-    static const NAME = "%n";
-
-    /// Outputs the short version of [Logger.name]
-    static const NAME_SHORT = '(?:%\\d{1,2}r|%r)';
-
-    /// Outputs the timestamp according to the Date Time Format specified in
-    /// [timestampFormatString]
-    static const TIME = "%t";
-
-    /// Outputs the logger sequence
-    static const SEQ = "%s";
-
-    /// logger exception
-    static const EXCEPTION = "%x";
-
-    /// logger exception message
-    static const EXCEPTION_TEXT = "%e";
-
-    /// Default format for a log message that does not contain an exception.
-    static const DEFAULT_MESSAGE_FORMAT = "%r: (%t) %m";
-
-    /// Default date time format for log messages
-    static const DEFAULT_DATE_TIME_FORMAT = "HH:mm:ss.SSS";
-
-    /// Contains the standard message format string
-    final String messageFormat;
-
-    /// Contains the timestamp format string
-    final String timestampFormat;
-
-    /// Contains the date format instance
-    DateFormat dateFormat;
-
-    /// Contains the regexp pattern
-    static final _regexp = new List<RegExp>.from([new RegExp(LEVEL), new RegExp(MESSAGE), new RegExp(NAME), new RegExp(NAME_SHORT), new RegExp(TIME), new RegExp(SEQ), new RegExp(EXCEPTION), new RegExp(EXCEPTION_TEXT)]);
-
-    ConsolStringTransformer({String this.messageFormat : StringTransformer.DEFAULT_MESSAGE_FORMAT, String this.timestampFormat : StringTransformer.DEFAULT_DATE_TIME_FORMAT}) {
-        dateFormat = new DateFormat(this.timestampFormat);
+    String time;
+    if (logRecord.time != null) {
+        time = dateFormat.format(logRecord.time);
+    } else {
+        time = dateFormat.format(new DateTime.now());
     }
 
-    /**
-     * Transform the log record into a string according to the [messageFormat]
-     * and [timestampFormat] pattern.
-     */
-    String transform(LogRecord logRecord) {
-        String formatString = messageFormat;
+    shortLoggerName.padRight(nameWidth);
+    if (logRecord.error != null) {
+        return "$time ${logRecord.level} ${shortLoggerName} ${logRecord.message} / ${logRecord.error}";
 
-        int lengthInPattern(final String pattern) {
-            final String digits = pattern.replaceAll(new RegExp('[^\\d]'),'');
-            return int.parse(digits,onError: (_) => 0);
-        }
-
-        _regexp.forEach((final RegExp regexp) {
-            switch (regexp.pattern) {
-
-                case LEVEL:
-                    formatString = formatString.replaceAll(regexp, logRecord.level.name);
-                    break;
-
-                case MESSAGE:
-                    formatString = formatString.replaceAll(regexp, logRecord.message);
-                    break;
-
-                case NAME:
-                    formatString = formatString.replaceAll(regexp, logRecord.loggerName);
-                    break;
-
-                case NAME_SHORT:
-                    final String shortLoggerName = logRecord.loggerName.replaceAll(new RegExp('^.+\\.'), "");
-
-                    formatString = formatString.replaceAllMapped(regexp, (final Match match) {
-                        final int length = lengthInPattern(match.group(0));
-                        return shortLoggerName.padRight(length);
-                    });
-                    break;
-
-                case TIME:
-                    if (logRecord.time != null) {
-                        try {
-                            formatString = formatString.replaceAll(regexp, dateFormat.format(logRecord.time));
-                        }
-                        on UnimplementedError {
-                            // at time of writing, dateFormat.format seems to be unimplemented.
-                            // so just return the time.toString()
-                            formatString = formatString.replaceAll(regexp, logRecord.time.toString());
-                        }
-                    }
-
-                    break;
-                case SEQ:
-                    formatString = formatString.replaceAll(regexp, logRecord.sequenceNumber.toString());
-                    break;
-
-                case EXCEPTION:case EXCEPTION_TEXT:
-                    if (logRecord.error != null) formatString = formatString.replaceAll(regexp, logRecord.error.toString());
-                    break;
-            }
-        });
-
-        return formatString;
+    } else {
+        return "$time ${logRecord.level} ${shortLoggerName} ${logRecord.message}";
     }
 }
+

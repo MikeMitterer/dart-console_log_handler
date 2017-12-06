@@ -57,5 +57,5 @@ main() {
 void configLogging() {
     hierarchicalLoggingEnabled = true;
     Logger.root.level = Level.INFO;
-    Logger.root.onRecord.listen(new LogConsoleHandler());
+    Logger.root.onRecord.listen(logToConsole);
 }

@@ -1,0 +1,20 @@
+name: console_log_handler_visual_test
+version: 0.0.1
+description: Visual Test for ConsolLogHandler
+author: <Mike Mitterer> <office@mikemitterer.at>
+#homepage: https://www.example.com
+
+environment:
+  sdk: '>=1.12.0 <2.0.0'
+
+dependencies:
+
+  logging: ^0.11.0
+  console_log_handler:
+    path: ../..
+
+  dart_to_js_script_rewriter: ^0.1.0
+  
+transformers:
+  - dart_to_js_script_rewriter
+
