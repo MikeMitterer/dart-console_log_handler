@@ -1,15 +1,20 @@
-console_log_handler
-===================
-#### Shows your log-messages on the Console
+# console_log_handler
+> Shows your log-messages on the Console (Browser + Commandline)
 
 ![Screenshot][1]
+![Screenshot][2]
 
-### How to use it
+## How to use it
 ```dart
 library unit.test;
 
 import 'package:logging/logging.dart';
+
+// Browser
 import "package:console_log_handler/console_log_handler.dart";
+
+// Commandline
+import "package:console_log_handler/print_log_handler.dart";
 
 void main() {
     configLogging();
@@ -24,16 +29,10 @@ void main() {
 
 }
 
-void configLogging() {
-    // now control the logging.
-    // Turn off all logging first
-    Logger.root.level = Level.INFO;
-    Logger.root.onRecord.listen(logToConsole);
-}
 ```
 
 ### If you have problems
-* [Issues][2]
+* [Issues][3]
 
 ### License
 
@@ -54,7 +53,7 @@ void configLogging() {
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me.
 
-[1]: https://raw.githubusercontent.com/MikeMitterer/dart-console_log_handler/master/doc/_resources/screenshot.png
-[2]: https://github.com/MikeMitterer/dart-console_log_handler/issues
-[3]: https://github.com/MikeMitterer/dart-console_log_handler
-[4]: https://github.com/chrisbu/logging_handlers  
+[1]: https://raw.githubusercontent.com/MikeMitterer/dart-console_log_handler/master/doc/_resources/screenshot_browser.png
+[2]: https://raw.githubusercontent.com/MikeMitterer/dart-console_log_handler/master/doc/_resources/screenshot_console.png
+[3]: https://github.com/MikeMitterer/dart-console_log_handler/issues
+

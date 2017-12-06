@@ -1,5 +1,5 @@
 # This is a browser-only package, so test on content shell by default.
-platforms: [ chrome ]
+platforms: [ vm ]
 
 paths:
   - test/unit

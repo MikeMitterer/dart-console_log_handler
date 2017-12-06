@@ -19,17 +19,12 @@
 
 
 import 'package:test/test.dart';
-
 import 'dart:convert';
-
-import "package:console_log_handler/console_log_handler.dart";
-import 'package:logging/logging.dart';
+import 'package:console_log_handler/shared/log_handler.dart';
 
 main() {
     // final Logger _logger = new Logger("unit.test.JsonPrettyPrint");
-    configLogging();
-
-    const JsonEncoder PRETTYJSON = const JsonEncoder.withIndent('   ');
+    // configLogging();
 
     group('JsonPrettyPrint', () {
         setUp(() {
@@ -83,8 +78,3 @@ main() {
     // end 'JsonPrettyPrint' group
 }
 
-void configLogging() {
-    hierarchicalLoggingEnabled = true;
-    Logger.root.level = Level.INFO;
-    Logger.root.onRecord.listen(new LogConsoleHandler());
-}

@@ -5,7 +5,10 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
-      <excludeFolder url="file://$MODULE_DIR$/example/visual_test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example/browser/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example/browser/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/console/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example/console/build" />
       <excludeFolder url="file://$MODULE_DIR$/example/visual_test/build" />
       <excludeFolder url="file://$MODULE_DIR$/sample/visual_test/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/sample/visual_test/build" />

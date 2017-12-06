@@ -1,3 +1,5 @@
+@TestOn("browser")
+
 /*
  * Copyright (c) 2015, Michael Mitterer (office@mikemitterer.at),
  * IT-Consulting and Development Limited.
@@ -16,6 +18,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+library console_log_handler.unit.test.browser;
 
 import 'package:test/test.dart';
 
@@ -52,10 +56,4 @@ main() {
 
     });
     // end 'Logging' group
-}
-
-void configLogging() {
-    hierarchicalLoggingEnabled = true;
-    Logger.root.level = Level.INFO;
-    Logger.root.onRecord.listen(logToConsole);
 }

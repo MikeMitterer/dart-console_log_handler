@@ -1,14 +1,15 @@
-library console_log_handler.console;
+library console_log_handler.print;
 
-import 'dart:html';
 import "dart:convert";
 
+import 'package:ansicolor/ansicolor.dart';
+import 'package:supports_color/supports_color.dart';
 import 'package:logging/logging.dart';
 import 'package:console_log_handler/shared/log_handler.dart';
 
 export 'package:console_log_handler/shared/log_handler.dart';
 
-final _DEFAULT_HANDLER = new LogConsoleHandler();
+final _DEFAULT_HANDLER = new LogPrintHandler();
 
 /// Shows your log-messages in the browser console
 ///
@@ -45,13 +46,20 @@ void configLogging({ final Level show: Level.WARNING }) {
 ///           Logger.root.onRecord.listen(new LogConsoleHandler());
 ///       }
 ///
-class LogConsoleHandler extends LogHandler {
+class LogPrintHandler extends LogHandler {
 
+    /// Converts [LogRecord] to String
     final TransformLogRecord _transformer;
 
     final MakeConsoleGroup _makeGroup = _defaultGroupMaker;
 
-    LogConsoleHandler( { final TransformLogRecord transformer: defaultTransformer } )
+    final AnsiPen _penInfo = new AnsiPen()..blue();
+    final AnsiPen _penWarning = new AnsiPen()..yellow();
+    final AnsiPen _penError = new AnsiPen()..red();
+
+    final bool _supportsColor = supportsColor;
+
+    LogPrintHandler( { final TransformLogRecord transformer: defaultTransformer } )
         : _transformer = transformer;
 
     /// More infos about console output:
@@ -59,30 +67,28 @@ class LogConsoleHandler extends LogHandler {
     @override
     void toConsole(final LogRecord logRecord,{ TransformLogRecord transformer }) {
         transformer ??= _transformer;
-        
-        if (logRecord.level <= Level.FINE) {
-            window.console.debug(transformer(logRecord));
 
+        if (logRecord.level <= Level.FINE || !_supportsColor) {
+            print(transformer(logRecord));
         }
         else if (logRecord.level <= Level.INFO) {
-            window.console.info(transformer(logRecord));
-
+            print(_penInfo(transformer(logRecord)));
+        }
+        else if (logRecord.level <= Level.WARNING) {
+            print(_penWarning(transformer(logRecord)));
         }
         else {
-            window.console.error(transformer(logRecord));
+            print(_penError(transformer(logRecord)));
         }
 
         _makeGroup(logRecord);
     }
 
-    // -- private -------------------------------------------------------------
-
     static void _makeObjectGroup(final String groupName, final LogRecord logRecord) {
 
         void makeGroupWithString(final String groupName,final String objectAsString) {
-            window.console.groupCollapsed(groupName);
-            window.console.log(objectAsString);
-            window.console.groupEnd();
+            print(groupName);
+            print(objectAsString);
         }
 
         if (logRecord.error != null) {
@@ -111,12 +117,14 @@ class LogConsoleHandler extends LogHandler {
 
     static void _makeStackTraceGroup(final String groupName, final LogRecord logRecord) {
         if (logRecord.stackTrace != null) {
-            window.console.group(groupName);
-            window.console.log(logRecord.stackTrace.toString());
-            window.console.groupEnd();
+            print(groupName);
+            print(logRecord.stackTrace.toString());
         }
     }
 
+
+
+    // -- private -------------------------------------------------------------
 
     /// Called after console output is done (via makeGroup - can be overwritten)
     static void _defaultGroupMaker(final LogRecord logRecord) {
