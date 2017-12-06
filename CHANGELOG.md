@@ -1,6 +1,11 @@
 # Change Log for console_log_handler
 Console logger
 
+## [v0.3.0](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.2.3...v0.3.0) - 2017-12-06
+
+### Feature
+* Remove logging_handlers-dependency, intl-dependency is more relaxed now [70b074d](https://github.com/mikemitterer/dart-console_log_handler/commit/70b074d3b6f2f8efbf105af45fd0b41a79ea1e93)
+
 ## [v0.2.3](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.2.2...v0.2.3) - 2016-11-16
 
 ### Docs
