@@ -1,6 +1,11 @@
 # Change Log for console_log_handler
 Console logger
 
+## [Unreleased](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.4...HEAD)
+
+### Feature
+* Browser-Console andgit tag v0.4! Terminal-Console is supported [b1fc60e](https://github.com/mikemitterer/dart-console_log_handler/commit/b1fc60ea07aa256bca88e766f25b70d3aa1989a3)
+
 ## [v0.3](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.2.3...v0.3) - 2017-12-06
 
 ### Feature
