@@ -38,7 +38,7 @@ on_os:
         # The settings to override for this platform.
         settings:
           executable: chromium-browser
-#          arguments: --window-position=5000,5000 --window-size=1,1 --disable-gpu
+          arguments: --window-position=1500,1000 --window-size=2,2 --disable-gpu
 
 
 
