@@ -28,7 +28,7 @@ void configLogging() {
     // now control the logging.
     // Turn off all logging first
     Logger.root.level = Level.INFO;
-    Logger.root.onRecord.listen(new LogConsoleHandler());
+    Logger.root.onRecord.listen(logToConsole);
 }
 ```
 
@@ -37,7 +37,7 @@ void configLogging() {
 
 ### License
 
-    Copyright 2016 Michael Mitterer (office@mikemitterer.at), 
+    Copyright 2017 Michael Mitterer (office@mikemitterer.at), 
     IT-Consulting and Development Limited, Austrian Branch
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -51,11 +51,6 @@ void configLogging() {
     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
     either express or implied. See the License for the specific language 
     governing permissions and limitations under the License.
-    
-### Thanks
-    
-I used Chris Buckett's (chrisbuckett@gmail.com) [logging_handler][4] library for my work.
-Thank's Chris!
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me.
 

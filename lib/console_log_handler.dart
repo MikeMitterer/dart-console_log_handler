@@ -1,6 +1,7 @@
 library console_log_handler;
 
 import 'dart:html';
+import 'dart:math';
 import "dart:convert";
 import "package:intl/intl.dart";
 
@@ -122,8 +123,10 @@ class LogConsoleHandler {
 }
 
 String defaultTransformer(final LogRecord logRecord,{ final int nameWidth = 20 }) {
-    String shortLoggerName = logRecord.loggerName.replaceAll(new RegExp('^.+\\.'), "");
     final dateFormat = new DateFormat("HH:mm:ss.SSS");
+
+    String loggerName = logRecord.loggerName.substring(max(0,logRecord.loggerName.length - nameWidth));
+    String shortLoggerName = logRecord.loggerName.replaceAll(new RegExp('^.+\\.'), "");
 
     String time;
     if (logRecord.time != null) {
@@ -132,12 +135,17 @@ String defaultTransformer(final LogRecord logRecord,{ final int nameWidth = 20 }
         time = dateFormat.format(new DateTime.now());
     }
 
-    shortLoggerName.padRight(nameWidth);
+    if(loggerName.length > nameWidth) {
+        loggerName = shortLoggerName;
+    }
+    loggerName += ":";
+    loggerName = loggerName.padRight(nameWidth);
+    
     if (logRecord.error != null) {
-        return "$time ${logRecord.level} ${shortLoggerName} ${logRecord.message} / ${logRecord.error}";
+        return "$time [${logRecord.level}] ${loggerName} ${logRecord.message} / ${logRecord.error}";
 
     } else {
-        return "$time ${logRecord.level} ${shortLoggerName} ${logRecord.message}";
+        return "$time [${logRecord.level}] ${loggerName} ${logRecord.message}";
     }
 }
 
