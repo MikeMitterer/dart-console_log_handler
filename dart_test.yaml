@@ -1,5 +1,5 @@
 # This is a browser-only package, so test on content shell by default.
-platforms: [ chrome ]
+platforms: [ chromium ]
 
 paths:
   - test/unit
@@ -15,21 +15,28 @@ define_platforms:
 
     # Settings for the new child platform.
     settings:
-      executable: chromium-browser
+      executable:
+        linux: chromium-browser
+        mac_os: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 
-override_platforms:
-  chrome:
-    settings:
-      arguments: --headless --disable-gpu
+      # Funkt nicht: --headless
+      # https://github.com/dart-lang/test/issues/730
+      arguments: --window-position=5000,5000 --window-size=1,1 --disable-gpu
 
-on_os:
-  linux:
-    override_platforms:
-      chrome:
-        # The settings to override for this platform.
-        settings:
-          executable: chromium-browser
-          arguments: --headless --disable-gpu
+
+#override_platforms:
+#  chrome:
+#    settings:
+#      arguments: --headless --disable-gpu
+
+#on_os:
+#  linux:
+#    override_platforms:
+#      chrome:
+#        # The settings to override for this platform.
+#        settings:
+#          executable: chromium-browser
+#          arguments: --headless --disable-gpu
 
 
 

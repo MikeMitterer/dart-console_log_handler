@@ -17,7 +17,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     //echo "PATH is: $PATH"
-                    sh 'grind test'
+                    sh 'pub run test'
                 }
             }
         }
