@@ -1,0 +1,35 @@
+# This is a browser-only package, so test on content shell by default.
+platforms: [ chrome ]
+
+paths:
+  - test/unit
+
+define_platforms:
+  # This identifier is used to select the platform with the --platform flag.
+  chromium:
+    # A human-friendly name for the platform.
+    name: Chromium
+
+    # The identifier for the platform that this is based on.
+    extends: chrome
+
+    # Settings for the new child platform.
+    settings:
+      executable: chromium-browser
+
+override_platforms:
+  chrome:
+    settings:
+      arguments: --headless --disable-gpu
+
+on_os:
+  linux:
+    override_platforms:
+      chrome:
+        # The settings to override for this platform.
+        settings:
+          executable: chromium-browser
+          arguments: --headless --disable-gpu
+
+
+
