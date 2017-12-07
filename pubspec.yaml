@@ -1,6 +1,6 @@
 name: console_log_handler
 
-version: 0.5.0
+version: 0.5.2
 author: Mike Mitterer  <office@mikemitterer.at>
 description: Console logger
 
