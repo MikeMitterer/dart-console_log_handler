@@ -24,7 +24,6 @@ library console_log_handler.unit.test.browser;
 import 'package:test/test.dart';
 
 import "package:console_log_handler/console_log_handler.dart";
-import 'package:logging/logging.dart';
 
 main() {
     final Logger _logger = new Logger("unit.test.Logging");

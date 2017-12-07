@@ -6,6 +6,7 @@ import "dart:convert";
 import 'package:logging/logging.dart';
 import 'package:console_log_handler/shared/log_handler.dart';
 
+export 'package:logging/logging.dart';
 export 'package:console_log_handler/shared/log_handler.dart';
 
 final _DEFAULT_HANDLER = new LogConsoleHandler();

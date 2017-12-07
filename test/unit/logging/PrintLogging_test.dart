@@ -22,7 +22,6 @@ library console_log_handler.unit.test.console;
 
 import 'package:test/test.dart';
 
-import 'package:logging/logging.dart';
 import "package:console_log_handler/print_log_handler.dart";
 
 main() {

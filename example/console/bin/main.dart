@@ -1,7 +1,6 @@
 // Copyright (c) 2017, Mike Mitterer. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-import 'package:logging/logging.dart';
 import "package:console_log_handler/print_log_handler.dart";
 
 main() async {
