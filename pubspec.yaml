@@ -12,11 +12,11 @@ environment:
 dependencies:
   browser: ^0.10.0
 
-  logging: ^0.11.0
+  logging: '<1.0.0'
   intl: any
 
   ansicolor: ^0.0.9
-  supports_color: "^0.1.1"
+  supports_color: "^0.1.0"
          
 dev_dependencies:
   test: any
