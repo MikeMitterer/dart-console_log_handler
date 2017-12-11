@@ -50,8 +50,6 @@ class LogConsoleHandler extends LogHandler {
 
     final TransformLogRecord _transformer;
 
-    final MakeConsoleGroup _makeGroup = _defaultGroupMaker;
-
     LogConsoleHandler( { final TransformLogRecord transformer: defaultTransformer } )
         : _transformer = transformer;
 
@@ -73,12 +71,11 @@ class LogConsoleHandler extends LogHandler {
             window.console.error(transformer(logRecord));
         }
 
-        _makeGroup(logRecord);
+        makeGroup(logRecord);
     }
 
-    // -- private -------------------------------------------------------------
-
-    static void _makeObjectGroup(final String groupName, final LogRecord logRecord) {
+    @override
+    void makeObjectGroup(final String groupName, final LogRecord logRecord) {
 
         void makeGroupWithString(final String groupName,final String objectAsString) {
             window.console.groupCollapsed(groupName);
@@ -110,7 +107,9 @@ class LogConsoleHandler extends LogHandler {
         }
     }
 
-    static void _makeStackTraceGroup(final String groupName, final LogRecord logRecord) {
+
+    @override
+    void makeStackTraceGroup(final String groupName, final LogRecord logRecord) {
         if (logRecord.stackTrace != null) {
             window.console.group(groupName);
             window.console.log(logRecord.stackTrace.toString());
@@ -118,13 +117,8 @@ class LogConsoleHandler extends LogHandler {
         }
     }
 
+    // -- private -------------------------------------------------------------
 
-    /// Called after console output is done (via makeGroup - can be overwritten)
-    static void _defaultGroupMaker(final LogRecord logRecord) {
-
-        _makeStackTraceGroup("  ○ StackTrace",logRecord);
-        _makeObjectGroup("  ○ Dart-Object",logRecord);
-    }
 }
 
 

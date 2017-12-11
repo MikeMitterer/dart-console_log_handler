@@ -52,8 +52,6 @@ class LogPrintHandler extends LogHandler {
     /// Converts [LogRecord] to String
     final TransformLogRecord _transformer;
 
-    final MakeConsoleGroup _makeGroup = _defaultGroupMaker;
-
     final AnsiPen _penInfo = new AnsiPen()..blue();
     final AnsiPen _penWarning = new AnsiPen()..yellow();
     final AnsiPen _penError = new AnsiPen()..red();
@@ -82,10 +80,11 @@ class LogPrintHandler extends LogHandler {
             print(_penError(transformer(logRecord)));
         }
 
-        _makeGroup(logRecord);
+        makeGroup(logRecord);
     }
 
-    static void _makeObjectGroup(final String groupName, final LogRecord logRecord) {
+    @override
+    void makeObjectGroup(final String groupName, final LogRecord logRecord) {
 
         void makeGroupWithString(final String groupName,final String objectAsString) {
             print(groupName);
@@ -116,7 +115,8 @@ class LogPrintHandler extends LogHandler {
         }
     }
 
-    static void _makeStackTraceGroup(final String groupName, final LogRecord logRecord) {
+    @override
+    void makeStackTraceGroup(final String groupName, final LogRecord logRecord) {
         if (logRecord.stackTrace != null) {
             print(groupName);
             print(logRecord.stackTrace.toString());
@@ -127,12 +127,6 @@ class LogPrintHandler extends LogHandler {
 
     // -- private -------------------------------------------------------------
 
-    /// Called after console output is done (via makeGroup - can be overwritten)
-    static void _defaultGroupMaker(final LogRecord logRecord) {
-
-        _makeStackTraceGroup("  ○ StackTrace",logRecord);
-        _makeObjectGroup("  ○ Dart-Object",logRecord);
-    }
 }
 
 
