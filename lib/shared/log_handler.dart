@@ -83,3 +83,4 @@ abstract class LogHandler {
 String prettyPrintJson(final json) {
     return PRETTYJSON.convert(json);
 }
+
