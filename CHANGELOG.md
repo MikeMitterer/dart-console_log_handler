@@ -1,7 +1,12 @@
 # Change Log for console_log_handler
 Console logger
 
-## [Unreleased](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.5...HEAD)
+## [Unreleased](http://github.com/mikemitterer/dart-console_log_handler/compare/v1.0...HEAD)
+
+### Feature
+* Dart 2.x ready [e995684](https://github.com/mikemitterer/dart-console_log_handler/commit/e995684f02be70431ebf6557dd70c631d118a79c)
+
+## [v1.0](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.5...v1.0) - 2017-12-11
 
 ### Refactor
 * Inheritace instead of callbacks for makeObjectGroupt + makeStackTraceGroup [5c78652](https://github.com/mikemitterer/dart-console_log_handler/commit/5c78652dab7185956970b89d85a7cd1c74b3b901)
