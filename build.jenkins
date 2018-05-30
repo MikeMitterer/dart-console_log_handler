@@ -8,7 +8,6 @@ pipeline {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
                         sh 'pub update'
-                        sh 'pub global activate grinder'
                     }
                 }
             }
@@ -17,7 +16,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     //echo "PATH is: $PATH"
-                    sh 'grind test'
+                    sh 'pub run build_runner test --fail-on-severe'
                 }
             }
         }
