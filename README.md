@@ -17,7 +17,7 @@ import "package:console_log_handler/console_log_handler.dart";
 import "package:console_log_handler/print_log_handler.dart";
 
 void main() {
-    configLogging();
+    configLogging(show: Level.INFO);
     final Logger _logger = new Logger("test");
 
     try {

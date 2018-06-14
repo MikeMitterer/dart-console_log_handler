@@ -32,7 +32,7 @@ void logToConsole(final LogRecord logRecord,{ TransformLogRecord transformer })
 ///         ...
 ///     }
 ///
-void configLogging({ final Level show: Level.WARNING }) {
+void configLogging({ final Level show: Level.INFO }) {
     hierarchicalLoggingEnabled = true;
     Logger.root.level = show;
     Logger.root.onRecord.listen(logToConsole);
