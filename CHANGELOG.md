@@ -6,6 +6,9 @@ Console logger
 ### Feature
 * Dart 2.x ready [e995684](https://github.com/mikemitterer/dart-console_log_handler/commit/e995684f02be70431ebf6557dd70c631d118a79c)
 
+### Refactor
+* Changed default loglevel from Warning to Info [6ee9307](https://github.com/mikemitterer/dart-console_log_handler/commit/6ee9307134ec00acdf22c409709bbad0d3a419d2)
+
 ## [v1.0](http://github.com/mikemitterer/dart-console_log_handler/compare/v0.5...v1.0) - 2017-12-11
 
 ### Refactor
