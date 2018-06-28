@@ -4,7 +4,11 @@ Console logger
 ## [Unreleased](http://github.com/mikemitterer/dart-console_log_handler/compare/v1.0...HEAD)
 
 ### Feature
+* Added some predefined 'LogRecord'-transformers [f8fe021](https://github.com/mikemitterer/dart-console_log_handler/commit/f8fe021eb7a4578baf5bdfb2be784d00b46fb745)
 * Dart 2.x ready [e995684](https://github.com/mikemitterer/dart-console_log_handler/commit/e995684f02be70431ebf6557dd70c631d118a79c)
+
+### Docs
+* More info on how to write a LogRecord-Transformer [fff845a](https://github.com/mikemitterer/dart-console_log_handler/commit/fff845a52f5d46bfc266836370f4e1865d1320db)
 
 ### Refactor
 * Changed default loglevel from Warning to Info [6ee9307](https://github.com/mikemitterer/dart-console_log_handler/commit/6ee9307134ec00acdf22c409709bbad0d3a419d2)
