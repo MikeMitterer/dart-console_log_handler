@@ -31,6 +31,9 @@ void main() {
 
 ```
 
+If you want to write your own `LogRecord`-Transformer - check out this [GH-page](https://github.com/MikeMitterer/dart-console_log_handler/blob/master/lib/shared/transformer.dart)
+and you'll see how simple it is.
+
 ### If you have problems
 * [Issues][3]
 
