@@ -50,7 +50,7 @@ class LogConsoleHandler extends LogHandler {
 
     final TransformLogRecord _transformer;
 
-    LogConsoleHandler( { final TransformLogRecord transformer: defaultTransformer } )
+    LogConsoleHandler( { final TransformLogRecord transformer: transformerDefault } )
         : _transformer = transformer;
 
     /// More infos about console output:

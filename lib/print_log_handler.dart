@@ -33,10 +33,15 @@ void logToConsole(final LogRecord logRecord,{ TransformLogRecord transformer })
 ///         ...
 ///     }
 ///
-void configLogging({ final Level show: Level.INFO }) {
+void configLogging({ final Level show: Level.INFO,
+        final TransformLogRecord transformer = transformerDefault }) {
+
     hierarchicalLoggingEnabled = true;
+
     Logger.root.level = show;
-    Logger.root.onRecord.listen(logToConsole);
+    Logger.root.onRecord.listen((final LogRecord event)
+        => logToConsole(event,transformer: transformer));
+
 }
 
 /// Shows log-messages on the Console
@@ -58,7 +63,7 @@ class LogPrintHandler extends LogHandler {
 
     final bool _supportsColor = supportsColor;
 
-    LogPrintHandler( { final TransformLogRecord transformer: defaultTransformer } )
+    LogPrintHandler( { final TransformLogRecord transformer: transformerDefault } )
         : _transformer = transformer;
 
     /// More infos about console output:

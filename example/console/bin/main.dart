@@ -5,7 +5,7 @@ import "package:console_log_handler/print_log_handler.dart";
 
 main() async {
     final Logger _logger = new Logger("unit.test.Logging");
-    configLogging(show: Level.FINE);
+    configLogging(show: Level.FINE, transformer: transformerMessageOnly);
 
     _logger.fine("Show this debug message");
 
