@@ -1,13 +1,13 @@
 name: console_log_handler
 
-version: 1.0.8
+version: 1.1.0
 author: Mike Mitterer  <office@mikemitterer.at>
 description: Console logger
 
 homepage: https://github.com/MikeMitterer/dart-console_log_handler
 
 environment:
-  sdk: ">=1.8.0 <3.0.0"
+  sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
 
