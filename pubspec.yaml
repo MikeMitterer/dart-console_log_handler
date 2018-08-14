@@ -7,16 +7,15 @@ description: Console logger
 homepage: https://github.com/MikeMitterer/dart-console_log_handler
 
 environment:
-  sdk: '>=1.12.0 <2.0.0'
+  sdk: ">=1.8.0 <3.0.0"
 
 dependencies:
 
   logging: '>=0.11.3 <1.0.0'
   intl: '>=0.15.2 <1.0.0'
 
-  ansicolor: ^0.1.0
-  supports_color: "^0.1.0"
-         
+  ansicolor: ^1.0.0
+
 dev_dependencies:
   test: any
   grinder: any

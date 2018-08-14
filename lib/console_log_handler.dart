@@ -11,6 +11,9 @@ export 'package:console_log_handler/shared/log_handler.dart';
 
 final _DEFAULT_HANDLER = new LogConsoleHandler();
 
+/// Ignore stupid decision against lowercase (static) const
+const JsonCodec JSON = json;
+
 /// Shows your log-messages in the browser console
 ///
 /// Usage:

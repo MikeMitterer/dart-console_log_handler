@@ -1,9 +1,9 @@
 library console_log_handler.print;
 
 import "dart:convert";
+import 'dart:io';
 
 import 'package:ansicolor/ansicolor.dart';
-import 'package:supports_color/supports_color.dart';
 import 'package:logging/logging.dart';
 import 'package:console_log_handler/shared/log_handler.dart';
 
@@ -11,6 +11,9 @@ export 'package:logging/logging.dart';
 export 'package:console_log_handler/shared/log_handler.dart';
 
 final _DEFAULT_HANDLER = new LogPrintHandler();
+
+/// Ignore stupid decision against lowercase (static) const
+const JsonCodec JSON = json;
 
 /// Shows your log-messages in the browser console
 ///
@@ -61,7 +64,7 @@ class LogPrintHandler extends LogHandler {
     final AnsiPen _penWarning = new AnsiPen()..yellow();
     final AnsiPen _penError = new AnsiPen()..red();
 
-    final bool _supportsColor = supportsColor;
+    final bool _supportsColor = stdout.supportsAnsiEscapes;
 
     LogPrintHandler( { final TransformLogRecord transformer: transformerDefault } )
         : _transformer = transformer;
@@ -72,17 +75,29 @@ class LogPrintHandler extends LogHandler {
     void toConsole(final LogRecord logRecord,{ TransformLogRecord transformer }) {
         transformer ??= _transformer;
 
-        if (logRecord.level <= Level.FINE || !_supportsColor) {
+        if (logRecord.level <= Level.FINE) {
             print(transformer(logRecord));
         }
         else if (logRecord.level <= Level.INFO) {
-            print(_penInfo(transformer(logRecord)));
+            if(_supportsColor) {
+                print(_penInfo(transformer(logRecord)));
+            } else {
+                print(transformer(logRecord));
+            }
         }
         else if (logRecord.level <= Level.WARNING) {
-            print(_penWarning(transformer(logRecord)));
+            if(_supportsColor) {
+                print(_penWarning(transformer(logRecord)));
+            } else {
+                print(transformer(logRecord));
+            }
         }
         else {
-            print(_penError(transformer(logRecord)));
+            if(_supportsColor) {
+                print(_penError(transformer(logRecord)));
+            } else {
+                print(transformer(logRecord));
+            }
         }
 
         makeGroup(logRecord);

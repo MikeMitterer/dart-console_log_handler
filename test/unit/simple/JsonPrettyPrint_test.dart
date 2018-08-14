@@ -22,6 +22,9 @@ import 'package:test/test.dart';
 import 'dart:convert';
 import 'package:console_log_handler/shared/log_handler.dart';
 
+/// Ignore stupid decision against lowercase (static) const
+const JsonCodec JSON = json;
+
 main() {
     // final Logger _logger = new Logger("unit.test.JsonPrettyPrint");
     // configLogging();
