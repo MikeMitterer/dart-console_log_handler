@@ -4,6 +4,8 @@ platforms: [ vm ]
 paths:
   - test/unit
 
+reporter: expanded
+
 #define_platforms:
 #  # This identifier is used to select the platform with the --platform flag.
 #  chromium:

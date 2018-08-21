@@ -27,10 +27,11 @@ import "package:console_log_handler/console_log_handler.dart";
 
 main() {
     final Logger _logger = new Logger("unit.test.Logging");
-    configLogging();
+    configLogging(show: Level.OFF);
 
     group('Logging', () {
         setUp(() {
+
         });
 
         test('> Map', () {
