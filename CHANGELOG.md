@@ -1,7 +1,12 @@
 # Change Log for console_log_handler
 Console logger
 
-## [Unreleased](http://github.com/mikemitterer/dart-console_log_handler/compare/v1.0...HEAD)
+## [Unreleased](http://github.com/mikemitterer/dart-console_log_handler/compare/v1.1...HEAD)
+
+### Test
+* Check if package works with Dart 2.x [298f654](https://github.com/mikemitterer/dart-console_log_handler/commit/298f6542c87c05d7b91b480f4ac90ea2dca0ed4f)
+
+## [v1.1](http://github.com/mikemitterer/dart-console_log_handler/compare/v1.0...v1.1) - 2018-06-28
 
 ### Feature
 * Added some predefined 'LogRecord'-transformers [f8fe021](https://github.com/mikemitterer/dart-console_log_handler/commit/f8fe021eb7a4578baf5bdfb2be784d00b46fb745)
