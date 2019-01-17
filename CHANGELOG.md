@@ -3,6 +3,9 @@ Console logger
 
 ## [Unreleased](http://github.com/mikemitterer/dart-console_log_handler/compare/v1.1...HEAD)
 
+### Bugs
+* Samples hat wrong Dart-SDK [7a81211](https://github.com/mikemitterer/dart-console_log_handler/commit/7a812112f030ded104bb3badccf3743cc56990b2)
+
 ### Test
 * Check if package works with Dart 2.x [298f654](https://github.com/mikemitterer/dart-console_log_handler/commit/298f6542c87c05d7b91b480f4ac90ea2dca0ed4f)
 
